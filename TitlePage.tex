@@ -1,0 +1,56 @@
+% Learning LaTeX (c) by Kerren Ortlepp
+
+% Learning LaTeX is licensed under a
+% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+% You should have received a copy of the license along with this
+% work. If not, see http://creativecommons.org/licenses/by-nc-sa/4.0/.
+\documentclass[12pt,a4paper,titlepage]{article}
+% Check out https://en.wikibooks.org/wiki/LaTeX/Title_Creation for more details on title page creation!
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{abstract}
+\usepackage{standalone}
+\usepackage{tikz}
+
+\title{Learning\ \LaTeX}
+\begin{document}
+\begin{titlepage}
+    \begin{minipage}{0.2\textwidth}
+        \includestandalone[width=\linewidth]{logo}
+    \end{minipage}\hfill
+    \begin{minipage}{0.65\textwidth}
+        {\sffamily\large School of Electrical and Information Engineering}\par
+        \vspace{0.35cm}
+        {\sffamily\large The University of Witwatersrand, Johannesburg}\par
+        \vspace{0.35cm}
+        {\sffamily\large ELEN0000 - Course Name}
+    \end{minipage}
+    \par
+    \vspace{0.2cm}
+    \rule{\textwidth}{0.2pt}
+    \centering
+
+    {\vspace{3cm}\huge\bfseries Learning \LaTeX\par}
+    \vspace{0.5cm}
+    {\normalsize\bfseries An Informal Introduction\par}
+    \vspace{3cm}
+    {\Large\itshape Kerren Ortlepp\par}
+    {123456}
+
+    \vspace{3cm}
+
+    \textit{Abstract}\\[0.3cm]
+    \begin{minipage}{0.9\columnwidth}
+    \small\noindent \LaTeX is a typesetting software that can be used to write reports, create presentations, and much more! The creation of a \LaTeX\ report is demonstrated throughout this document. Furthermore, there is a tutorial on figure and circuit creation using Ti\emph{k}z. By the end of this document you should know the basics of creating a \LaTeX\ document and with a little bit of practice you'll be creating professional looking reports in no time!
+    \normalsize
+    \end{minipage}
+
+    \vfill
+
+% Bottom of the page
+    {\large \today\par}
+
+\end{titlepage}
+\end{document}

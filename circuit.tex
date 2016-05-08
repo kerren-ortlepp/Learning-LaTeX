@@ -1,0 +1,48 @@
+% Learning LaTeX (c) by Kerren Ortlepp
+
+% Learning LaTeX is licensed under a
+% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+% You should have received a copy of the license along with this
+% work. If not, see http://creativecommons.org/licenses/by-nc-sa/4.0/.
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage[siunitx]{circuitikz}
+
+\usepackage{ifthen}
+\ifthenelse{\isundefined{\samplesize}}
+{
+    \newcommand{\samplesize}{500}
+}
+{
+}
+
+\begin{document}
+
+\begin{circuitikz}[ american voltages]
+\draw
+    (0, 0) to[V=$V_{in}(t)$] (0, 2.5)
+    to[sV=$V_n(t)$] (0, 5)
+    to[R, l=1<\kilo\ohm> ] (2.5, 5)
+    to[L, l=2<\milli\henry>] (5, 5)
+    to[C, l=10<\micro\farad>] (5, 0) -- (0, 0);
+    \draw (2.5, 0) node[ground] {};
+
+    \draw[dashed, draw opacity=0.4] (2.8, 5.7) -- (6.5, 5.7) -- (6.5, -0.1) -- ( 2.8, -0.1 ) -- cycle;
+
+    \draw (5, 5) -- (7.5, 5) node[circ,] {};
+    \draw (5, 0) -- (7.5, 0) node[circ,] {};
+
+    \draw (7.5, 5) node[anchor=north] {$+$};
+    \draw (7.5, 0) node[anchor=south] {$-$};
+    \draw (7.5, 2.5) node {$V_o(t)$};
+
+
+    \draw (5-0.2,5.7) node[anchor=south] {Low Pass Filter};
+
+
+\end{circuitikz}
+
+\end{document}

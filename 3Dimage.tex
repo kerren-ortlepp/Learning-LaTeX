@@ -1,0 +1,53 @@
+% Learning LaTeX (c) by Kerren Ortlepp
+
+% Learning LaTeX is licensed under a
+% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+% You should have received a copy of the license along with this
+% work. If not, see http://creativecommons.org/licenses/by-nc-sa/4.0/.
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\usepackage{ifthen}
+\ifthenelse{\isundefined{\samplesize}}
+{
+    \newcommand{\samplesize}{500}
+}
+{
+}
+
+
+\begin{document}
+
+
+\begin{tikzpicture}
+
+
+    \draw[thick,->] (0,0,0) -- (6,0,0) node[anchor=north east]{$x$};
+    \draw[thick,->] (0,0,0) -- (0,6,0) node[anchor=north west]{$y$};
+    \draw[thick,->] (0,0,0) -- (0,0,6) node[anchor=north west]{$z$};
+
+
+    \draw[fill, draw opacity = 0.3] (0,0,0) -- (5,5,3) circle (2pt);
+
+    \draw[dashed, draw opacity = 0.2] (5,5,3) -- (5,0,3);
+    \draw[dashed, draw opacity = 0.2] (5,5,3) -- (0,5,3);
+    \draw[dashed, draw opacity = 0.2] (5,5,3) -- (5,5,0);
+
+    \draw[dashed, draw opacity = 0.2] (5,0,3) -- (5,0,0);
+    \draw[dashed, draw opacity = 0.2] (5,0,3) -- (0,0,3);
+    \draw[dashed, draw opacity = 0.2] (0,5,3) -- (0,5,0);
+    \draw[dashed, draw opacity = 0.2] (0,5,3) -- (0,0,3);
+    \draw[dashed, draw opacity = 0.2] (5,5,0) -- (5,0,0);
+    \draw[dashed, draw opacity = 0.2] (5,5,0) -- (0,5,0);
+
+    \draw[fill] (0,0,3) node[anchor=north west] {$3$} circle (1pt);
+    \draw[fill] (0,5,0) node[anchor=west] {$5$} circle (1pt);
+    \draw[fill] (5,0,0) node[anchor=north] {$5$} circle (1pt);
+
+
+\end{tikzpicture}
+
+\end{document}

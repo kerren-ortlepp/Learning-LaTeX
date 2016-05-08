@@ -1,0 +1,34 @@
+% Learning LaTeX (c) by Kerren Ortlepp
+
+% Learning LaTeX is licensed under a
+% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+% You should have received a copy of the license along with this
+% work. If not, see http://creativecommons.org/licenses/by-nc-sa/4.0/.
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\usepackage{ifthen}
+\ifthenelse{\isundefined{\samplesize}}
+{
+    \newcommand{\samplesize}{500}
+}
+{
+}
+
+\begin{document}
+
+
+\begin{tikzpicture}
+
+    \draw[ultra thick] (0,0) circle (70pt);
+    \draw (0,0.4) node[anchor=south] {\Huge Learning};
+    \draw (0,0.4) node[anchor=north] {\Huge \LaTeX};
+    \draw (0,-1.2) node {\small by};
+    \draw (0,-1.4) node[anchor=north] {\small Kerren Ortlepp};
+
+\end{tikzpicture}
+
+\end{document}

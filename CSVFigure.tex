@@ -1,0 +1,58 @@
+% Learning LaTeX (c) by Kerren Ortlepp
+
+% Learning LaTeX is licensed under a
+% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+% You should have received a copy of the license along with this
+% work. If not, see http://creativecommons.org/licenses/by-nc-sa/4.0/.
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+
+
+\usepackage{ifthen}
+\ifthenelse{\isundefined{\samplesize}}
+{
+    \newcommand{\samplesize}{500}
+}
+{
+}
+
+\begin{document}
+\pgfmathsetmacro{\newPageScale}{0.8}%
+\pgfmathsetmacro{\axiswidth}{21*\newPageScale}%
+\pgfmathsetmacro{\axisheight}{14.8*\newPageScale}%
+% These macros are used to shape the graph to fit nicely in a report.
+\begin{tikzpicture}
+    \pgfplotsset{ every non boxed x axis/.append style={x axis line style=->} }%
+    \pgfplotsset{ every non boxed y axis/.append style={y axis line style=<->, thick} }%
+    \begin{axis}[
+        width=\axiswidth*1cm, height=\axisheight*1cm,%
+        axis y line=left,%
+        axis x line=middle,%
+        xlabel=\Large{Time (s)},%
+        ylabel=\Large{Voltage (V)},%
+        xmax = 2.8,
+        enlarge y limits=0.05,%
+        x label style ={%
+            %at={(axis description cs:0,-0.01)},%
+            anchor=south%
+        },%
+        y label style={%
+            at={(axis description cs:-0.01,.5)}%,%
+        },%
+        legend style={%
+            anchor= south east%
+        },%
+        grid style={dashed,black!20},%
+        grid = both%
+        ]%
+        \addplot[mark=.,red!80,thick,smooth] table [x=t, y=v, col sep=comma] {plot.csv};
+        \addplot[mark=.,blue!80,thick,smooth] table [x=t, y=v, col sep=comma] {plot2.csv};
+        \legend{Input Voltage, Output Voltage};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

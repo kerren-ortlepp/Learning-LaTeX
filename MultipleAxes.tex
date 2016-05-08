@@ -1,0 +1,85 @@
+% Learning LaTeX (c) by Kerren Ortlepp
+
+% Learning LaTeX is licensed under a
+% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+% You should have received a copy of the license along with this
+% work. If not, see http://creativecommons.org/licenses/by-nc-sa/4.0/.
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+
+
+\usepackage{ifthen}
+\ifthenelse{\isundefined{\samplesize}}
+{
+    \newcommand{\samplesize}{500}
+}
+{
+}
+
+\begin{document}
+\pgfmathsetmacro{\newPageScale}{0.8}%
+\pgfmathsetmacro{\axiswidth}{21*\newPageScale}%
+\pgfmathsetmacro{\axisheight}{14.8*\newPageScale}%
+% These macros are used to shape the graph to fit nicely in a report.
+\begin{tikzpicture}
+    \pgfplotsset{ every non boxed x axis/.append style={x axis line style=->} }%
+    \pgfplotsset{ every non boxed y axis/.append style={y axis line style=<->, thick} }%
+    \pgfplotsset{set layers}
+    \begin{axis}[
+        scale only axis,
+        width=\axiswidth*1cm, height=\axisheight*1cm,%
+        axis y line=left,%
+        axis x line*=middle,%
+        xlabel=\Large{Time (s)},%
+        ylabel=\Large{Voltage (V)},%
+        xmax = 0.5, xmin = 0,
+        enlarge y limits=0.05,%
+        x label style ={%
+            at={(axis description cs:0.5,0.48)},%
+            anchor=north east%
+        },%
+        y label style={%
+            at={(axis description cs:-0.01,.5)}%,%
+        },%
+        legend style={%
+            anchor= south east%
+        },%
+        grid style={dashed,black!20},%
+        grid = both%
+        ]%
+        \addplot[mark=.,scale=0.05,orange,smooth,densely dashed, thick] table [x=t, y=input, col sep=comma] {2Axes.csv}; \label{plot_voltage}
+    \end{axis}
+
+    \begin{axis}[
+        scale only axis,
+        width=\axiswidth*1cm, height=\axisheight*1cm,%
+        axis y line=right,%
+        axis x line=none,%
+        xlabel=\Large{Time (s)},%
+        ylabel=\Large{Current (A)},%
+        xmax = 0.5, xmin = 0,
+        enlarge y limits=0.05,%
+        x label style ={%
+            anchor=south%
+        },%
+        y label style={%
+            at={(axis description cs:1.01,.4)},%
+            anchor=north west
+        },%
+        legend style={%
+            anchor= north east%
+        },%
+        grid style={dashed,black!20},%
+        grid = both%
+        ]%
+        \addlegendimage{/pgfplots/refstyle=plot_voltage}\addlegendentry{Input Voltage}
+        \addplot[mark=.,scale=0.05,darkgray,smooth,thin] table [x=t, y=output, col sep=comma] {2Axes.csv}; \label{plot_current}
+        \addlegendentry{Output Current}
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

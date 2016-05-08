@@ -1,0 +1,43 @@
+% Learning LaTeX (c) by Kerren Ortlepp
+
+% Learning LaTeX is licensed under a
+% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+% You should have received a copy of the license along with this
+% work. If not, see http://creativecommons.org/licenses/by-nc-sa/4.0/.
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\usepackage{ifthen}
+\ifthenelse{\isundefined{\samplesize}}
+{
+    \newcommand{\samplesize}{500}
+}
+{
+}
+
+\begin{document}
+
+
+\begin{tikzpicture}
+
+    %Axes
+    \draw[->, thick] (0, 0) -- (15, 0) node[below] {$t$};
+    \draw[<->, thick] (0, 5) node[above right] {$F(k) = \sum\limits_{k=0}^{k=\infty}\delta (t-k) f(t)$} -- (0, -2.5);
+
+
+    %Plot
+    \draw[smooth, draw opacity = 0.3,dashed] plot[samples=\samplesize, domain=0:14.8] (\x,{ 7 * exp(-0.3*\x) * sin( 2*pi*2/14.8*\x r)});
+
+
+    \foreach \i in {0,...,29}{
+
+        \draw[fill, draw opacity = 0.6, ultra thin] (\i/2, 0) -- plot[domain=\i/2:\i/2] (\x,{ 7 * exp(-0.3*\i/2) * sin( 2*pi*2/14.8*\i/2 r)}) circle (1pt);
+
+    };
+
+\end{tikzpicture}
+
+\end{document}
